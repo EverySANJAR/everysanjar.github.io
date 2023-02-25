@@ -1,0 +1,563 @@
+@keyframes draw {
+  0% {
+    opacity: 0; /* Starts with text fully transparent */
+  }
+  50% {
+    opacity: 0.5; /* Fades in the text to fully opaque */
+  }
+  100% {
+    opacity: 1; /* Fades out the text to fully transparent */
+  }
+}
+@keyframes drone {
+  0% {
+    transform: translateX(-50%); /* Starts with no text visible */
+  }
+  100% {
+    transform: translateX(0); /* Starts withReveals the entire text */
+  }
+}
+.hidden {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateX(-100%);
+  transition: all 1s;
+}
+
+.show {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+.full-bleed {
+  box-shadow: 0 0 0 100vmax var(--bg-color);
+  -webkit-clip-path: inset(0 -100vmax);
+          clip-path: inset(0 -100vmax);
+}
+
+.container {
+  position: relative;
+  padding-top: 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.container-header {
+  position: relative;
+  padding-top: 3rem;
+  max-width: 1400px;
+  height: 100%;
+  margin: 0 auto;
+  --bg-color: linear-gradient(90deg, #eff2f6 60%, #eee5d3 40%);
+  background: var(--bg-color);
+}
+@media (max-width: 82.75em) {
+  .container-header {
+    overflow: hidden;
+  }
+}
+@media (max-width: 54.5em) {
+  .container-header {
+    background: #eff2f6 !important;
+  }
+}
+
+.sub-text {
+  font-size: 1.5rem;
+  color: #92a1a5;
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  width: 400%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.slide {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.slide img {
+  max-width: 100%;
+  height: auto;
+}
+
+.header {
+  position: relative;
+  background: linear-gradient(90deg, #eff2f6 57%, #eee5d3 40%);
+  height: 800px;
+}
+@media (max-width: 54.5em) {
+  .header {
+    height: auto;
+    padding-bottom: 3rem;
+    background: #eff2f6;
+  }
+}
+.header-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-items-left {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.header-items-left-circle {
+  position: absolute;
+  top: 0;
+  left: 11.2rem;
+}
+.header-items-left-phone {
+  display: flex;
+  margin-left: 4rem;
+  color: #92a1a5;
+  align-items: center;
+}
+.header-items-left-phone span {
+  margin-left: 1rem;
+}
+.header-items-right {
+  display: flex;
+  color: #fff;
+}
+.header-items-right h2 {
+  margin-right: 2rem;
+}
+@media (max-width: 54.5em) {
+  .header-items-right h2 {
+    color: #000000;
+  }
+  .header-items-right img {
+    background-color: #f2f2f2;
+  }
+}
+.header-items-right-text {
+  position: absolute;
+  font-size: 30rem;
+  top: 23rem;
+  right: -38%;
+  color: #eee5d3;
+  transform: rotate(90deg);
+  text-shadow: 0 0 55px rgba(0, 1, 1, 0.15);
+}
+@media (max-width: 103.75em) {
+  .header-items-right-text {
+    display: none;
+  }
+}
+.header-cell {
+  position: absolute;
+  width: 652px;
+  height: 652px;
+  border-radius: 100%;
+  background-color: #ffffff;
+  top: 7rem;
+  left: 35%;
+  right: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.header-cell img {
+  animation: drone 0.5s ease-in-out;
+}
+@media (max-width: 82.75em) {
+  .header-cell {
+    background-color: transparent;
+    top: 14rem;
+    left: 59%;
+  }
+}
+@media (max-width: 54.5em) {
+  .header-cell {
+    margin-top: 5rem;
+    position: unset;
+    width: auto;
+    height: auto;
+  }
+}
+.header-info {
+  font-size: 2.5rem;
+  margin-left: 5rem;
+  margin-top: 35rem;
+}
+@media (max-width: 54.5em) {
+  .header-info {
+    margin-left: 0rem;
+    margin-top: 0rem;
+    text-align: center;
+  }
+}
+.header-checks {
+  top: 39rem;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: -moz-min-content;
+  width: min-content;
+}
+.header-checks input[type=radio] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+.header-checks input::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 2px solid none;
+  margin-right: 10px;
+  vertical-align: middle;
+  background-color: #fff;
+  cursor: pointer;
+}
+.header-checks input[type=radio]:checked::before {
+  background-color: #eee5d3;
+  border-color: #eee5d3;
+}
+@media (max-width: 54.5em) {
+  .header-checks {
+    position: unset;
+    flex-direction: row;
+    margin: 0 auto;
+  }
+}
+
+.main-fly {
+  display: flex;
+}
+@media (max-width: 82.75em) {
+  .main-fly {
+    flex-direction: column;
+  }
+}
+.main-fly-left {
+  display: flex;
+  align-items: center;
+  flex-basis: 40%;
+  width: 100%;
+  height: 60rem;
+  background-color: #f8f9fb;
+}
+.main-fly-left h1 {
+  font-size: 5rem;
+}
+.main-fly-right {
+  position: relative;
+  width: 100%;
+  height: 60rem;
+  background-image: url(./images/beautiful-highway-wallpaper.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+@media (max-width: 82.75em) {
+  .main-fly-right {
+    flex-direction: column;
+    font-size: 4.5rem;
+    justify-content: space-around;
+  }
+}
+.main-fly-right-higher {
+  height: 600px;
+  width: 39.5%;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 82.75em) {
+  .main-fly-right-higher {
+    height: 250px;
+    width: 100%;
+  }
+}
+.main-fly-right-higher h1 {
+  font-size: 5rem;
+}
+.main-fly-right button {
+  width: 182px;
+  height: 57px;
+  border-radius: 29px;
+  background-color: #ffffff;
+  color: #000000;
+  text-transform: 90deg;
+  border: 1px solid transparent;
+  margin-left: 1rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+}
+.main-fly-right-more {
+  display: flex;
+  align-items: center;
+  transform: rotate(-90deg);
+  width: 53%;
+}
+.main-fly-right-more-line {
+  width: 40%;
+  height: 1px;
+  background-color: #fff;
+}
+@media (max-width: 82.75em) {
+  .main-fly-right-more {
+    transform: rotate(0);
+    justify-content: center;
+    padding-bottom: 10rem;
+  }
+  .main-fly-right-more-line {
+    display: none;
+  }
+}
+.main-features {
+  padding-top: 5rem;
+  padding-bottom: 6rem;
+}
+.main-features h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+.main-features-icons {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: space-between;
+}
+.main-features-icons-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main-features-icons-icon img {
+  padding-bottom: 4rem;
+}
+@media (max-width: 35.625em) {
+  .main-features-icons {
+    flex-direction: column;
+  }
+  .main-features-icons-icon:not(:first-child) {
+    margin-top: 4rem;
+  }
+}
+.main-features-icons-icon:nth-child(2) {
+  transition-delay: 200ms;
+}
+.main-features-icons-icon:nth-child(3) {
+  transition-delay: 400ms;
+}
+.main-features-icons-icon:nth-child(4) {
+  transition-delay: 600ms;
+}
+.main-genereation {
+  display: flex;
+}
+@media (max-width: 97.8125em) {
+  .main-genereation img {
+    display: none;
+  }
+}
+@media (max-width: 54.5em) {
+  .main-genereation {
+    flex-direction: column;
+    display: inline;
+  }
+}
+.main-genereation-left {
+  flex-basis: 70%;
+  height: 600px;
+  width: 100%;
+  background-image: url(./images/29506-Car-Mechanic-Simulator-2021-HD-Wallpaper.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.main-genereation-right {
+  position: relative;
+  background-color: #232323;
+  height: 600px;
+  width: 100%;
+  color: #fff;
+  font-size: 6rem;
+  overflow: hidden;
+  padding-left: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 54.5em) {
+  .main-genereation-right {
+    font-size: 4.5rem;
+  }
+}
+.main-genereation-right span {
+  color: #eee5d3;
+}
+.main-genereation-right h1, .main-genereation-right span, .main-genereation-right button {
+  position: relative;
+  z-index: 10000;
+}
+.main-genereation-right-img {
+  position: absolute;
+  right: -20%;
+}
+.main-genereation-right button {
+  width: 182px;
+  height: 57px;
+  border-radius: 29px;
+  background-color: transparent;
+  color: #fff;
+  text-transform: 90deg;
+  border: 2px solid #3b3b3b;
+  margin-left: 1rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+}
+@media (max-width: 97.8125em) {
+  .main-genereation-right-drone {
+    display: none;
+  }
+}
+.main-genereation-fly {
+  margin-top: 10rem;
+  margin-bottom: 10rem;
+  position: relative;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10rem;
+}
+@media (max-width: 54.5em) {
+  .main-genereation-fly {
+    font-size: 4.5rem;
+    padding-left: 0rem;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+}
+.main-genereation-fly h1 {
+  color: #000000;
+  text-align: left;
+}
+.main-genereation-fly button {
+  color: #000000;
+}
+.main-genereation-fly img {
+  position: absolute;
+  right: -25rem;
+}
+.main-journey {
+  width: 100%;
+  height: 1000px;
+  background-image: url(./images/endless-road-mountain-range-landscape-death-valley-blue-sky-1920x1080-3909.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  font-size: 5rem;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 15rem;
+}
+@media (max-width: 54.5em) {
+  .main-journey {
+    font-size: 4rem;
+  }
+}
+.main-journey button {
+  margin-top: 5rem;
+  width: 162px;
+  height: 50px;
+  border-radius: 29px;
+  border: 1px solid transparent;
+  margin-left: 1rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  color: black;
+  mix-blend-mode: screen;
+}
+.main-journey button::before {
+  background: white;
+  content: "";
+  mix-blend-mode: color-burn;
+}
+
+.footer {
+  position: relative;
+  height: 400px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #FBFBFB;
+}
+@media (max-width: 54.5em) {
+  .footer {
+    height: auto;
+  }
+}
+.footer-phantom {
+  position: absolute;
+  color: #fff;
+  font-size: 20rem;
+}
+@media (max-width: 67.5em) {
+  .footer-phantom {
+    display: none;
+  }
+}
+.footer-logo {
+  position: relative;
+  z-index: 100;
+}
+.footer-logo img {
+  top: 0;
+  left: 11.2rem;
+  position: absolute;
+}/*# sourceMappingURL=styles.css.map */

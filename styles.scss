@@ -1,0 +1,705 @@
+/////MEDIA////////
+@mixin respond($breakpoint) {
+
+  @if $breakpoint == generationbug {
+    @media (max-width: 97.8125em) {
+      @content;
+    } 
+  } // 1565px
+
+  @if $breakpoint == marsbug {
+    @media (max-width: 103.75em) {
+      @content;
+    } 
+  }
+
+  @if $breakpoint == first {
+    @media (max-width: 82.75em) {
+      @content;
+    } 
+  } // 1324px
+
+  @if $breakpoint == brokenfly {
+    @media (max-width: 52.8125em) {
+      @content;
+    } 
+  } // 845px
+
+
+  @if $breakpoint == second {
+    @media (max-width: 54.5em) {
+      @content;
+    } 
+  } // 872px
+
+  @if $breakpoint == third {
+    @media (max-width: 35.625em) {
+      @content;
+    } 
+  } // 872px
+
+
+
+}
+//////
+
+////ANIMATIONS////////
+
+@keyframes draw {
+  0% {
+    opacity: 0; /* Starts with text fully transparent */
+  }
+  50% {
+    opacity: 0.5; /* Fades in the text to fully opaque */
+  }
+  100% {
+    opacity: 1; /* Fades out the text to fully transparent */
+  }
+}
+
+@keyframes drone {
+  0% {
+    transform: translateX(-50%); /* Starts with no text visible */
+  }
+
+  100% {
+    transform: translateX(0); /* Starts withReveals the entire text */
+  }
+}
+
+.hidden {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateX(-100%);
+  transition: all 1s;
+}
+
+.show {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);
+}
+
+////
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  
+
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  
+}
+
+
+
+
+////UTILITIES///////////
+
+.full-bleed {
+  box-shadow: 0 0 0 100vmax var(--bg-color);
+  clip-path: inset(0 -100vmax);
+}
+
+.container {
+  position: relative;
+  padding-top: 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.container-header {
+  position: relative;
+  padding-top: 3rem;
+  max-width: 1400px;
+  height: 100%;
+  margin: 0 auto;
+  --bg-color: linear-gradient(90deg, #eff2f6 60%, #eee5d3 40%);
+  
+  background: var(--bg-color);
+  
+
+  @include respond(first) {
+    overflow: hidden;
+    
+   }
+ 
+
+  @include respond(second) {
+    background: #eff2f6 !important;
+    
+   }
+  
+  
+}
+
+
+.sub-text {
+  font-size: 1.5rem;
+  color: #92a1a5;
+}
+
+
+.slider {
+  position: relative;
+  width: 100%; 
+  overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  width: 400%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.slide {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.slide img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+
+
+///
+
+
+
+
+.header {
+  position: relative;
+  background: linear-gradient(90deg, #eff2f6 57%, #eee5d3 40%); 
+  height: 800px;
+
+  @include respond(second) {
+    height: auto;
+    padding-bottom: 3rem;
+    background: #eff2f6;
+  }
+
+
+  &-items {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &-left {
+      position: relative;
+      display: flex;
+      align-items: center;
+      &-circle {
+        position: absolute;
+        top: 0;
+        left: 11.2rem;
+      }
+
+      &-phone {
+        display: flex;
+        margin-left: 4rem;
+        color: #92a1a5;
+        align-items: center;
+        span {
+          margin-left: 1rem;
+        }
+      }
+    }
+
+    &-right {
+      display: flex;
+      color: #fff;
+      h2 {
+        margin-right: 2rem;
+      }
+
+      @include respond(second) {
+        h2 {
+          color: #000000;
+        }
+
+        img {
+          background-color: #f2f2f2;
+        }
+       }
+
+      &-text {
+        position: absolute;
+        font-size: 30rem;
+        top: 23rem;
+        right: -38%;
+        color: #eee5d3;
+        transform: rotate(90deg);
+        text-shadow: 0 0 55px rgba(0, 1, 1, 0.15);
+        @include respond(marsbug) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &-cell {
+    position: absolute;
+    width: 652px;
+    height: 652px;
+    border-radius: 100%;
+    background-color: #ffffff;
+    top: 7rem;
+    left: 35%;
+    right: 1rem;
+    display: flex;
+    justify-content: center;
+
+    img {
+      animation: drone .5s ease-in-out;
+    }
+   
+
+    @include respond(first) {
+      background-color: transparent;
+      top: 14rem;
+      left: 59%;
+     
+    }
+
+    @include respond(second) {
+      margin-top: 5rem;
+      position: unset;
+      width: auto;
+      height: auto;
+
+  
+    }
+  }
+
+  &-info {
+    font-size: 2.5rem;
+    margin-left: 5rem;
+    margin-top: 35rem;
+
+    @include respond(second) {
+      margin-left: 0rem;
+       margin-top: 0rem;
+       text-align: center;
+    }
+  }
+
+  &-checks {
+    top: 39rem;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: min-content;
+
+    input[type="radio"] {
+      appearance: none;
+    }
+
+    input::before {
+      content: "";
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      border: 2px solid none;
+      margin-right: 10px;
+      vertical-align: middle;
+      background-color: #fff;
+      cursor: pointer;
+    }
+
+    input[type="radio"]:checked::before {
+      background-color: #eee5d3;
+      border-color: #eee5d3;
+    }
+
+    @include respond(second) {
+      position: unset;
+      flex-direction: row;
+      margin: 0 auto;
+    }
+
+    
+  }
+}
+
+.main {
+  &-fly {
+    display: flex;
+    @include respond(first) {
+      flex-direction: column;
+     }
+
+    &-left {
+      display: flex;
+      align-items: center;
+
+      flex-basis: 40%;
+      width: 100%;
+      height: 60rem;
+      background-color: #f8f9fb;
+
+      h1 {
+        font-size: 5rem;
+      }
+    }
+
+    &-right {
+      position: relative;
+      width: 100%;
+      height: 60rem;
+      background-image: url(./images/beautiful-highway-wallpaper.jpg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      overflow: hidden;
+  
+
+      @include respond(first) {
+        flex-direction: column;
+        font-size: 4.5rem;
+        justify-content: space-around;
+       }
+
+     
+      &-higher {
+        height: 600px;
+        width: 39.5%;
+        background: rgba(0, 0, 0, 0.65);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        @include respond(first) {
+          height: 250px;
+          width: 100%;
+         }
+
+        h1 {
+          font-size: 5rem;
+        }
+      }
+
+      button {
+        width: 182px;
+        height: 57px;
+        border-radius: 29px;
+        background-color: #ffffff;
+        color: #000000;
+        text-transform: (90deg);
+        border: 1px solid transparent;
+        margin-left: 1rem;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      &-more {
+        display: flex;
+        align-items: center;
+        transform: rotate(-90deg);
+        width: 53%;
+
+        &-line {
+          width: 40%;
+          height: 1px;
+          background-color: #fff;
+        }
+
+        @include respond(first) {
+          transform: rotate(0);
+          justify-content: center;
+          padding-bottom: 10rem;
+
+          &-line {
+           display: none;
+          }
+         }
+      }
+    }
+  }
+
+  &-features {
+    padding-top: 5rem;
+    padding-bottom: 6rem;
+    h1 {
+      font-size: 3rem;
+      text-align: center;
+    }
+
+    &-icons {
+      margin-top: 5rem;
+      display: flex;
+      justify-content: space-between;
+      &-icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        img {
+          padding-bottom: 4rem;
+        }
+      }
+
+      @include respond(third) {
+        flex-direction: column;
+
+        &-icon:not(:first-child) {
+          margin-top: 4rem;
+        }
+       }
+
+       &-icon:nth-child(2) {
+        transition-delay: 200ms;
+       }
+
+       &-icon:nth-child(3) {
+        transition-delay: 400ms;
+       }
+
+       &-icon:nth-child(4) {
+        transition-delay: 600ms;
+       }
+    }
+  }
+
+  &-genereation {
+    display: flex;
+
+    @include respond(generationbug) {
+      img {
+        display: none;
+      }
+     }
+
+    @include respond(second) {
+      flex-direction: column;
+      display: inline;
+  
+     }
+    &-left {
+      flex-basis: 70%;
+      height: 600px;
+      width: 100%;
+      background-image: url(./images/29506-Car-Mechanic-Simulator-2021-HD-Wallpaper.jpg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    &-right {
+      position: relative;
+      background-color: #232323;
+      height: 600px;
+      width: 100%;
+      color: #fff;
+      font-size: 6rem;
+      overflow: hidden;
+      padding-left: 2rem;
+
+      @include respond(second) {
+        font-size: 4.5rem;
+
+       }
+     
+      span {
+        color: #eee5d3;
+      }
+
+      h1,span,button {
+        position: relative;
+        z-index: 10000;
+      }
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &-img {
+        position: absolute;
+        right: -20%;
+      }
+
+    
+      
+
+  
+      button {
+        width: 182px;
+        height: 57px;
+        border-radius: 29px;
+        background-color: transparent;
+        color: #fff;
+        text-transform: (90deg);
+        border: 2px solid #3b3b3b;
+        margin-left: 1rem;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      
+      @include respond(generationbug) {
+       
+          &-drone {
+           display: none;
+          }
+        
+       
+       }
+     
+
+    
+
+    
+
+    }
+
+    &-fly {
+       margin-top: 10rem;
+       margin-bottom: 10rem;
+       position: relative;
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+        padding-left: 10rem;
+
+        @include respond(second) {
+          font-size: 4.5rem;
+          padding-left: 0rem;
+          margin-bottom: 0;
+          margin-top: 0;
+         }
+
+       
+        
+       
+        h1 {
+            color: #000000;
+            text-align: left;
+        }
+
+        button {
+            color: #000000;
+        }
+
+        img {
+           position: absolute;
+           right: -25rem;
+        }
+
+      
+       
+
+       
+      }
+  }
+
+  &-journey {
+    width: 100%;
+    height: 1000px;
+    background-image: url(./images/endless-road-mountain-range-landscape-death-valley-blue-sky-1920x1080-3909.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    font-size: 5rem;
+    color: #ffff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 15rem;
+
+    @include respond(second) {
+     font-size: 4rem;
+    }
+
+    button {
+        margin-top: 5rem;
+        width: 162px;
+        height: 50px;
+        border-radius: 29px;
+        border: 1px solid transparent;
+        margin-left: 1rem;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        cursor: pointer;
+        border: none;
+       
+        outline: none;
+        color: black;
+        mix-blend-mode: screen;
+        
+      }
+
+      button::before {
+        
+        background: white;
+        content: '';
+        mix-blend-mode: color-burn;
+          
+      }
+
+   
+  }
+}
+
+.footer {
+    position: relative;
+    height: 400px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FBFBFB;
+
+    @include respond(second) {
+      height: auto;
+    }
+
+    &-phantom {
+        position: absolute;
+        color: #fff;
+        font-size: 20rem;
+       
+
+        @media (max-width: 67.5em) {
+          display: none;
+        } 
+    }
+
+    &-logo {
+        position: relative;
+        z-index: 100;
+        img {
+            top: 0;
+            left: 11.2rem;
+            position: absolute;
+        }
+    }
+}
